@@ -98,12 +98,24 @@ app.route('/articles/:articleTitle')
       },
       function(err) {
         if (!err) {
-          res.send("Successful update");
+          res.send("updated article");
         } else {
           res.send(err);
         }
       }
     )
+  })
+  .delete((req, res) => {
+    Article.deleteOne(
+      {title: req.params.articleTitle},
+      function(err){
+        if(!err){
+          res.send("item deleted");
+        } else {
+          res.send(err);
+        }
+      }
+    );
   });
 
 
